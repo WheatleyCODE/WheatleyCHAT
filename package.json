@@ -2,7 +2,7 @@
   "name": "htmtwbjke",
   "version": "1.0.0",
   "main": "gulpfile.js",
-  "homepage": "https://github.com/npmjke/htmtwbjke#readme",
+  "homepage": "https://WheatleyCODE.github.io/WheatleyCHAT",
   "scripts": {
     "start": "gulp",
     "build": "gulp build",
@@ -10,13 +10,15 @@
     "img": "gulp img",
     "fonts": "gulp fonts",
     "scss": "gulp scss",
-    "js": "gulp js"
+    "js": "gulp js",
+    "deploy": "gh-pages -d ./dist"
   },
   "license": "ISC",
   "dependencies": {
     "autoprefixer": "^9.6.1",
     "axios": "^0.19.0",
     "cssnano": "^4.1.10",
+    "gh-pages": "^2.1.1",
     "gulp": "^4.0.2",
     "gulp-imagemin": "^6.1.0",
     "gulp-nunjucks-render": "^2.2.3",
