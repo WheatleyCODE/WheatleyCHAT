@@ -1,0 +1,112 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body {
+    background-color: rgb(172, 233, 235);
+}
+.MainText {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.Options {
+    display: flex;
+    justify-content: center;
+}
+.ChatBlock {
+    width: 900px;
+    height: 600px;
+    border-radius: 20px;
+    border:$border-style;
+    display: flex;
+    background-color: white;
+}
+.ChatBlock__SiteBar {
+    width: 30%;
+    height: 100%;
+    border-right:$border-style;
+}
+.ChatBlock__UserContent {
+    width: 70%;
+    height: 100%;
+}
+.ChatBlock__Search {
+    width: 100%;
+    height: 70px;
+    border-bottom:1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.ChatBlock__SearchFriend{
+    width: 80%;
+    height: 40px;
+    padding: 10px;
+    border-radius: 5px;
+    border:$border-style;
+    padding-left:30px;
+}
+.ChatBlock__SearchFriend:focus {
+    border: 1px solid rgb(82, 46, 245);
+}
+.ChatBlock__FriendsList {
+    width: 100%;
+    height: 510px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+}
+.ChatBlock__Communication {
+    width: 100%;
+    height: 520px;
+}
+.ChatBlock__UserMessage {
+    width: 100%;
+    height: 70px;
+    border-top:$border-style;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.FriendVisual {
+    min-height: 60px;
+    width:88%;
+    border-radius:7px;
+    margin-top: 10px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+.FriendVisual:hover {
+    background-color: rgba(83, 46, 245, 0.445);
+    cursor: pointer;
+}
+.ChatBlock__FriendAvatar {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(245, 109, 46);
+    border-radius: 5px;
+}
+.ChatBlock__FriendNameText {
+    margin-left: 30px;
+}
+.ChatBlock_FriendAvatarImg {
+    width: 50px;
+    height: 50px;
+    border-radius:5px;
+}
+.ChatBlock__UserMessageInput {
+    width: 80%;
+    height: 40px;
+    padding-left: 10px;
+}
+.ChatBlock__UserMessageButton {
+    height: 40px;
+    background-color: white;
+}
+.ChatBlock__UserMessageButtonImages {
+    width: auto;
+    height: 100%;
+}
