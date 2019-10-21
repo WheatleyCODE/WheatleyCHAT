@@ -7,7 +7,6 @@ button:active, button:focus {
     }
 body {
     background-color: rgba(123, 73, 238, 0.055);
-    // background: linear-gradient(rgb(122, 73, 238), rgb(238, 73, 73));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -79,7 +78,11 @@ body {
     padding: 10px;
     border-radius: $border-radius-style;
     border:$border-style;
-    padding-left:30px;
+    padding-left:40px;
+    background: url(../images/src.png) no-repeat;
+    background-size: 20px;
+    background-position-y: center;
+    background-position-x: 10px;
 }
 .ChatBlock__SearchFriend:focus {
     border: 1px solid rgb(82, 46, 245);
