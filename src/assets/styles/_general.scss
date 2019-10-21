@@ -3,7 +3,7 @@
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 button:active, button:focus {
-    outline: none !important;
+    // outline: none !important;
     }
 body {
     background-color: rgba(123, 73, 238, 0.055);
@@ -73,19 +73,16 @@ body {
     justify-content: center;
 }
 .ChatBlock__SearchFriend{
-    width: 80%;
+    width: 90%;
     height: 40px;
     padding: 10px;
-    border-radius: $border-radius-style;
+    // border-radius: $border-radius-style;
     border:$border-style;
     padding-left:40px;
     background: url(../images/src.png) no-repeat;
     background-size: 20px;
     background-position-y: center;
     background-position-x: 10px;
-}
-.ChatBlock__SearchFriend:focus {
-    border: 1px solid rgb(82, 46, 245);
 }
 .ChatBlock__FriendsList {
     width: 100%;
@@ -118,17 +115,19 @@ body {
 .FriendVisual {
     min-height: 60px;
     width:88%;
-    border-radius:$border-radius-style;
+     border-radius: $border-radius-style 0 0 $border-radius-style;
     margin-top: 10px;
     padding: 5px;
     display: flex;
     align-items: center;
+    border-right: 4px solid rgba(161, 202, 248, 0.76);
 }
 .FriendVisualOne {
-    background-color: rgba(161, 202, 248, 0.76);;
+    background-color: rgba(161, 202, 248, 0.151);
+    border-color: rgba(245, 123, 23, 0.897);
 }
 .FriendVisual:hover {
-    background-color: rgba(161, 202, 248, 0.521);
+    background-color: rgba(161, 202, 248, 0.151);
     cursor: pointer;
 }
 .ChatBlock__FriendAvatar {
@@ -159,7 +158,7 @@ body {
     border: $border-style;
 }
 .ChatBlock__UserMessageButton:hover {
-    border: 1px solid rgb(46, 132, 245);
+    // border: 1px solid rgb(46, 132, 245);
 }
 .ChatBlock__UserMessageButtonImages {
     width: auto;
