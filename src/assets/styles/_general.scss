@@ -6,8 +6,8 @@ button:active, button:focus {
     outline: none !important;
     }
 body {
-    // background-color: rgba(172, 233, 235, 0.808);
-    background: linear-gradient(rgba(172, 233, 235, 0.808), rgba(172, 205, 235, 0.808));
+    background-color: rgba(123, 73, 238, 0.055);
+    // background: linear-gradient(rgb(122, 73, 238), rgb(238, 73, 73));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -37,12 +37,10 @@ body {
 .ChatBlock__Message {
     width: 100%;
     height: 100%;
-    background-color: rgb(233, 233, 233);
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     padding: 10px;
-    border-radius: $border-radius-style;
 }
 .ChatBlock__MessagePullFriend {
     display: flex;
@@ -53,6 +51,7 @@ body {
     background-color:white;
     border-radius: $border-radius-style;
     padding: 0 10px;
+    border: $border-style;
 }
 .UserMesage {
     display: flex;
@@ -63,12 +62,12 @@ body {
     height: 50px;
     border-radius: $border-radius-style;
     margin:0 10px ;
+    border: $border-style;
 }
 
 .ChatBlock__Search {
     width: 100%;
     height: 70px;
-    border-bottom:1px solid black;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -92,17 +91,25 @@ body {
     align-items: center;
     overflow: auto;
 }
+.ChatBlock__FriendsList::-webkit-scrollbar {
+    width: 0;
+}
 .ChatBlock__Communication {
     width: 100%;
     height: 520px;
+    background-color: rgba(214, 229, 255, 0.432);
+    // background: linear-gradient(rgba(172, 233, 235, 0.808), rgba(172, 205, 235, 0.808));
+    border-radius: 0 $border-radius-style 0 0;
 }
 .ChatBlock__UserMessage {
     width: 100%;
-    height: 80px;
+    height: 77px;
     border-top:$border-style;
     display: flex;
     align-items: center;
     justify-content: center;
+    // background-color: rgb(233, 233, 233);
+    border-radius: 0 0 $border-radius-style 0;
 }
 .FriendVisual {
     min-height: 60px;
@@ -147,7 +154,7 @@ body {
     border: $border-style;
 }
 .ChatBlock__UserMessageButton:hover {
-    border: 1px solid rgb(82, 46, 245);
+    border: 1px solid rgb(46, 132, 245);
 }
 .ChatBlock__UserMessageButtonImages {
     width: auto;
