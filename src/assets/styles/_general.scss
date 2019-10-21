@@ -6,7 +6,8 @@ button:active, button:focus {
     outline: none !important;
     }
 body {
-    background-color: rgb(172, 233, 235);
+    // background-color: rgba(172, 233, 235, 0.808);
+    background: linear-gradient(rgba(172, 233, 235, 0.808), rgba(172, 205, 235, 0.808));
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,6 +34,37 @@ body {
     width: 70%;
     height: 100%;
 }
+.ChatBlock__Message {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(233, 233, 233);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 10px;
+    border-radius: $border-radius-style;
+}
+.ChatBlock__MessagePullFriend {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.ChatBlock__FriendMessage {
+    background-color:white;
+    border-radius: $border-radius-style;
+    padding: 0 10px;
+}
+.UserMesage {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.ChatBlock__FriendImg {
+    width: 50px;
+    height: 50px;
+    border-radius: $border-radius-style;
+    margin:0 10px ;
+}
+
 .ChatBlock__Search {
     width: 100%;
     height: 70px;
@@ -66,7 +98,7 @@ body {
 }
 .ChatBlock__UserMessage {
     width: 100%;
-    height: 70px;
+    height: 80px;
     border-top:$border-style;
     display: flex;
     align-items: center;
@@ -80,6 +112,9 @@ body {
     padding: 5px;
     display: flex;
     align-items: center;
+}
+.FriendVisualOne {
+    background-color: rgba(161, 202, 248, 0.76);;
 }
 .FriendVisual:hover {
     background-color: rgba(161, 202, 248, 0.521);
