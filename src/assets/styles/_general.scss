@@ -2,9 +2,6 @@
     box-sizing: border-box;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
-button:active, button:focus {
-    // outline: none !important;
-    }
 body {
     background-color: rgba(123, 73, 238, 0.055);
     display: flex;
@@ -22,7 +19,7 @@ body {
     border-radius:$border-radius-style;
     border:$border-style;
     display: flex;
-    background-color: white;
+    background-color: $white;
     box-shadow: 0px 0px 5px 2px rgb(175, 175, 175);
 }
 .ChatBlock__SiteBar {
@@ -48,14 +45,51 @@ body {
     margin-bottom: 10px;
 }
 .ChatBlock__FriendMessage {
-    background-color:white;
+    background-color:$white;
     border-radius: $border-radius-style;
-    padding: 0 10px;
     border: $border-style;
+    position: relative;
+    margin-left: 10px;
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        top: 0;
+        bottom: 0;
+        left: -8px;
+        margin: auto;
+        background-color: $white;
+        border: $border-style;
+        border-top: none;
+        border-right: none;
+        transform: rotate(45deg);
+    }
+
+    p {
+        margin: 0;
+        padding: 16px 10px;
+        border-radius: $border-radius-style;
+        background-color:$white;
+    }
 }
 .UserMesage {
     display: flex;
     flex-direction: row-reverse;
+
+    .ChatBlock__FriendMessage {
+        margin-left: 0;
+        margin-right:10px ;
+        &::before {
+            left: auto;
+            right: -8px;
+            border: $border-style;
+            border-bottom: none;
+            border-left: none;
+        }
+    }
 }
 .ChatBlock__FriendImg {
     width: 50px;
@@ -64,7 +98,6 @@ body {
     margin:0 10px ;
     border: $border-style;
 }
-
 .ChatBlock__Search {
     width: 100%;
     height: 70px;
@@ -76,7 +109,6 @@ body {
     width: 90%;
     height: 40px;
     padding: 10px;
-    // border-radius: $border-radius-style;
     border:$border-style;
     padding-left:40px;
     background: url(../images/src.png) no-repeat;
@@ -99,7 +131,6 @@ body {
     width: 100%;
     height: 520px;
     background-color: rgba(214, 229, 255, 0.432);
-    // background: linear-gradient(rgba(172, 233, 235, 0.808), rgba(172, 205, 235, 0.808));
     border-radius: 0 $border-radius-style 0 0;
 }
 .ChatBlock__UserMessage {
@@ -109,7 +140,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    // background-color: rgb(233, 233, 233);
     border-radius: 0 0 $border-radius-style 0;
 }
 .FriendVisual {
@@ -123,17 +153,16 @@ body {
     border-right: 4px solid rgba(161, 202, 248, 0.76);
 }
 .FriendVisualOne {
-    background-color: rgba(161, 202, 248, 0.151);
+    background-color: $lightBlue;
     border-color: rgba(245, 123, 23, 0.897);
 }
 .FriendVisual:hover {
-    background-color: rgba(161, 202, 248, 0.151);
+    background-color: $lightBlue;
     cursor: pointer;
 }
 .ChatBlock__FriendAvatar {
     width: 50px;
     height: 50px;
-    background-color: rgb(245, 109, 46);
     border-radius: $border-radius-style;
 }
 .ChatBlock__FriendNameText {
@@ -154,11 +183,8 @@ body {
 .ChatBlock__UserMessageButton {
     height: 40px;
     width: 60px;
-    background-color: white;
+    background-color: $white;
     border: $border-style;
-}
-.ChatBlock__UserMessageButton:hover {
-    // border: 1px solid rgb(46, 132, 245);
 }
 .ChatBlock__UserMessageButtonImages {
     width: auto;
