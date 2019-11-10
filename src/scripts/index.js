@@ -8,7 +8,8 @@ import $ from 'jquery';
 // 7 условие если текст совпадает со значением то показать родителя параграфа если нет то скрыть
 
 $(document).ready(function(){
-
+    $('.FriendVisual').addClass('visible');
+    counter();
 
     var $FriendList = $('.ChatBlock__FriendsList');
     var $searchFriendInput = $('.ChatBlock__SearchFriend');
@@ -22,21 +23,21 @@ $(document).ready(function(){
             var $friendContainer = $this.closest('.FriendVisual');
 
             if(text.indexOf(value) !==-1){
-                $friendContainer.show();
+                $friendContainer.show().addClass('visible');
             }else {
-                $friendContainer.hide();
+                $friendContainer.hide().removeClass('visible');
             }
+            counter();
         });
     });
 
-    var $friendNumber = $('.FriendNumber');
-    $friendNumber.on('click', function() {
+
+   function counter() {
         var $FriendList = $('.ChatBlock__FriendsList');
-        $FriendList.find('.FriendNumber').each(function(i){
+        $FriendList.find('.visible .FriendNumber').each(function(i){
             var number = i + 1;
             var $this = $(this);
             $this.text(number);
         });
-        
-    });
+    };
 });
