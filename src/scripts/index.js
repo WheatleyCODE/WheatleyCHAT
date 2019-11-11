@@ -98,12 +98,13 @@ $(document).ready(function(){
     function printMessage(){
         var message = $userMessageInput.val();
         $userMessageInput.val('');
-        $massagrsContainer.prepend(CreateMessage(message, true));
-
-        setTimeout(function() {
-            var friendMessage = friendMessageColl[randomValue(0,friendMessageColl.length)];
-            $massagrsContainer.prepend(CreateMessage(friendMessage, false));
-        }, 1000);
+        if(message !==''){
+            $massagrsContainer.prepend(CreateMessage(message, true));
+            setTimeout(function() {
+                var friendMessage = friendMessageColl[randomValue(0,friendMessageColl.length)];
+                $massagrsContainer.prepend(CreateMessage(friendMessage, false));
+            }, 1000);
+        }
     }
 
 
