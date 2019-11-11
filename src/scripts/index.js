@@ -78,13 +78,24 @@ $(document).ready(function(){
         'Соре, помочь не могу, не знаю где он',
         'Но могу зачитать реп!',
         'Как хочешь, бро )',
+        'Если б я был человеком, а не скриптом, я пообщался бы с тобой =)',
+        'Заскриптованная фраза №5',
     ]
 
     var $userMessageInput = $('.ChatBlock__UserMessageInput');
     var $userMessageButton = $('.ChatBlock__UserMessageButton');
     var $massagrsContainer = $('.ChatBlock__Message');
 
-    $userMessageButton.on('click', function(){
+    $userMessageInput.keypress(function(event){
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if(keycode == '13'){
+            printMessage();
+        }
+    });
+
+    $userMessageButton.on('click',printMessage);
+
+    function printMessage(){
         var message = $userMessageInput.val();
         $userMessageInput.val('');
         $massagrsContainer.append(CreateMessage(message, true));
@@ -93,8 +104,7 @@ $(document).ready(function(){
             var friendMessage = friendMessageColl[randomValue(0,friendMessageColl.length)];
             $massagrsContainer.append(CreateMessage(friendMessage, false));
         }, 1000);
-    });
-
+    }
 
 
 
