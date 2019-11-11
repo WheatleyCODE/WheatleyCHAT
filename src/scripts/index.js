@@ -1,15 +1,18 @@
 import $ from 'jquery';
-// 1 По готовности документа - функция
-// 2 Создать переменные для блоков поиска и листа
-// 3 Прикрепить к поиску обработчик и получить значения
-// 4 Найти в Листе параграф и перебрать
-// 5 переменная для зис
-// 6 переменный для текста в малом шрифте и взять родителя параграфа
-// 7 условие если текст совпадает со значением то показать родителя параграфа если нет то скрыть
 
 $(document).ready(function(){
+
+    //Глобальные переменные
     var UserImg = 'images/UserAvatarMain.jpg';
     var friendImg = '';
+
+    var friendMessageColl = [
+        'Соре, помочь не могу, не знаю где он',
+        'Но могу зачитать реп!',
+        'Как хочешь, бро )',
+        'Если б я был человеком, а не скриптом, я пообщался бы с тобой =)',
+        'Заскриптованная фраза №5',
+    ]
 
     //Функция запоминающая выбранного друга
     function RememberFriends () {
@@ -69,48 +72,39 @@ $(document).ready(function(){
     function randomValue(min, max){
         return Math.floor(Math.random() * (max - min) + min);
     }
+    
+    //Обработчик отправки сообщений
+    function inputHandlers(){
+        var $userMessageInput = $('.ChatBlock__UserMessageInput');
+        var $userMessageButton = $('.ChatBlock__UserMessageButton');
+        
+        $userMessageInput.keypress(function(event){
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if(keycode == '13'){
+                printMessage();
+            }
+        });
+        $userMessageButton.on('click', printMessage);
+    }
 
-    // for(var i = 0; i <20; i++){
-    //     console.log(randomValue(0, 3))
-    // }
-     
-    var friendMessageColl = [
-        'Соре, помочь не могу, не знаю где он',
-        'Но могу зачитать реп!',
-        'Как хочешь, бро )',
-        'Если б я был человеком, а не скриптом, я пообщался бы с тобой =)',
-        'Заскриптованная фраза №5',
-    ]
-
-    var $userMessageInput = $('.ChatBlock__UserMessageInput');
-    var $userMessageButton = $('.ChatBlock__UserMessageButton');
-    var $massagrsContainer = $('.ChatBlock__Message');
-
-    $userMessageInput.keypress(function(event){
-        var keycode = (event.keyCode ? event.keyCode : event.which);
-        if(keycode == '13'){
-            printMessage();
-        }
-    });
-
-    $userMessageButton.on('click',printMessage);
-
+    //Отображение сообщения
     function printMessage(){
+        var $massagrsContainer = $('.ChatBlock__Message');
+        var $userMessageInput = $('.ChatBlock__UserMessageInput');
         var message = $userMessageInput.val();
         $userMessageInput.val('');
         if(message !==''){
             $massagrsContainer.prepend(CreateMessage(message, true));
             setTimeout(function() {
-                var friendMessage = friendMessageColl[randomValue(0,friendMessageColl.length)];
+                var friendMessage = friendMessageColl[randomValue(0, friendMessageColl.length)];
                 $massagrsContainer.prepend(CreateMessage(friendMessage, false));
             }, 1000);
         }
     }
 
-
-
     //Вызов функций
     RememberFriends();
     FilterFriend();
     FhooseFriend();
+    inputHandlers();
 });
