@@ -38,12 +38,11 @@ $(document).ready(function(){
                 var text = $this.text().toLocaleLowerCase();
                 var $friendContainer = $this.closest('.FriendVisual');
 
-                    if(text.indexOf(value) !==-1){
-                        $friendContainer.show().addClass('visible');
-                    }else {
-                        $friendContainer.hide().removeClass('visible');
-            }
-            counterFriend();
+                if(text.indexOf(value) !==-1){
+                    $friendContainer.show().addClass('visible');
+                }else {
+                    $friendContainer.hide().removeClass('visible');
+                 }
             });
         });
     };
@@ -72,7 +71,7 @@ $(document).ready(function(){
     function randomValue(min, max){
         return Math.floor(Math.random() * (max - min) + min);
     }
-    
+
     //Обработчик отправки сообщений
     function inputHandlers(){
         var $userMessageInput = $('.ChatBlock__UserMessageInput');
