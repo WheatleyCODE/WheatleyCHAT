@@ -40,4 +40,9 @@ $(document).ready(function(){
             $this.text(number);
         });
     };
+    $('.FriendVisual').on('click', function() {
+        $(this).addClass('FriendVisualOne');
+        $(this).siblings().removeClass('FriendVisualOne');
+    });
+
 });
