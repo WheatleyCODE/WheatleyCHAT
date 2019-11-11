@@ -71,6 +71,38 @@ $(document).ready(function(){
         };
     };
 
+    //Конструктор сообщений
+    function CreateMessage (message, isUser){
+        var сlassName = isUser ? 'ChatBlock__MessagePullFriend UserMesage' : 'ChatBlock__MessagePullFriend' ;
+        return '<div class="'+ сlassName +'"><img class="ChatBlock__FriendImg" src="images/UserAvatar5.png" alt=""><div class="ChatBlock__FriendMessage"><p>'+ message +'</p></div></div>'
+    }
+     
+    var friendMessageColl = [
+        'Соре, помочь не могу, не знаю где он',
+        'Но могу зачитать реп!',
+        'Как хочешь, бро )',
+    ]
+
+    var $userMessageInput = $('.ChatBlock__UserMessageInput');
+    var $userMessageButton = $('.ChatBlock__UserMessageButton');
+    var $massagrsContainer = $('.ChatBlock__Message');
+
+    $userMessageButton.on('click', function(){
+        var message = $userMessageInput.val();
+        $userMessageInput.val('');
+        var messagePatern = CreateMessage(message, true);
+        $massagrsContainer.append(messagePatern);
+
+        setTimeout(function() {
+            var friendMessage = friendMessageColl[0];
+            var messagePatern = CreateMessage(friendMessage, false);
+            $massagrsContainer.append(messagePatern);
+        }, 1000);
+    });
+
+
+
+
     //Вызов функций
     counterFriend();
     CountingFriends();
