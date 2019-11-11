@@ -71,7 +71,7 @@ $(document).ready(function(){
         };
     };
 
-    //Объявления функций
+    //Вызов функций
     counterFriend();
     CountingFriends();
     RememberFriends();
