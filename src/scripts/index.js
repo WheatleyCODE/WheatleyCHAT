@@ -9,40 +9,8 @@ import $ from 'jquery';
 
 $(document).ready(function(){
 
-    $('.FriendVisual').addClass('visible');
-    counter();
-
-
-    var FriendIdLocal = localStorage.getItem('SelectedFriend');
-        if(FriendIdLocal){
-            $('#'+ FriendIdLocal).addClass('FriendVisualOne');
-        }else {
-             $('.FriendVisual').eq(0).addClass('FriendVisualOne')
-        }
-
-        
-    var $FriendList = $('.ChatBlock__FriendsList');
-    var $searchFriendInput = $('.ChatBlock__SearchFriend');
-
-    $searchFriendInput.on('input',function(event){
-        var value = event.target.value.toLowerCase();
-
-        $FriendList.find('.ChatBlock__FriendName').each(function(){
-            var $this = $(this);
-            var text = $this.text().toLocaleLowerCase();
-            var $friendContainer = $this.closest('.FriendVisual');
-
-            if(text.indexOf(value) !==-1){
-                $friendContainer.show().addClass('visible');
-            }else {
-                $friendContainer.hide().removeClass('visible');
-            }
-            counter();
-        });
-    });
-
-
-   function counter() {
+    //Счетчик друзей
+   function counterFriend() {
         var $FriendList = $('.ChatBlock__FriendsList');
         $FriendList.find('.visible .FriendNumber').each(function(i){
             var number = i + 1;
@@ -51,14 +19,62 @@ $(document).ready(function(){
         });
     };
 
-    $('.FriendVisual').on('click', ItemSelection);
+    //Функция считающая друзей
+    function CountingFriends(){
+        $('.FriendVisual').addClass('visible');
+        counterFriend();
+    }
 
-    function ItemSelection() {
-        $(this).addClass('FriendVisualOne');
-        $(this).siblings().removeClass('FriendVisualOne');
-        var FriendId = this.id;
-        localStorage.setItem('SelectedFriend',FriendId);
-        // console.log(localStorage.getItem('SelectedFriend'));
+    //Функция запоминающая выбранного друга
+    function RememberFriends () {
+        var FriendIdLocal = localStorage.getItem('SelectedFriend');
+        if(FriendIdLocal){
+            $('#'+ FriendIdLocal).addClass('FriendVisualOne');
+        }else {
+            $('.FriendVisual').eq(0).addClass('FriendVisualOne');
+        }
+    }
+    
+    //Функция ищущая друзей
+    function FilterFriend(){
+
+        var $FriendList = $('.ChatBlock__FriendsList');
+        var $searchFriendInput = $('.ChatBlock__SearchFriend');
+
+        $searchFriendInput.on('input',function(event){
+        var value = event.target.value.toLowerCase();
+
+            $FriendList.find('.ChatBlock__FriendName').each(function(){
+                var $this = $(this);
+                var text = $this.text().toLocaleLowerCase();
+                var $friendContainer = $this.closest('.FriendVisual');
+
+                    if(text.indexOf(value) !==-1){
+                        $friendContainer.show().addClass('visible');
+                    }else {
+                        $friendContainer.hide().removeClass('visible');
+            }
+            counterFriend();
+            });
+        });
     };
 
+    //Выбор друга
+    function FhooseFriend(){
+        $('.FriendVisual').on('click', ItemSelection);
+
+        function ItemSelection() {
+            $(this).addClass('FriendVisualOne');
+            $(this).siblings().removeClass('FriendVisualOne');
+            var FriendId = this.id;
+            localStorage.setItem('SelectedFriend',FriendId);
+        };
+    };
+
+    //Объявления функций
+    counterFriend();
+    CountingFriends();
+    RememberFriends();
+    FilterFriend();
+    FhooseFriend();
 });
