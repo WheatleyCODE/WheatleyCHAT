@@ -9,15 +9,15 @@ import $ from 'jquery';
 
 $(document).ready(function(){
     var UserImg = 'images/UserAvatar5.png';
-    var friendImges = '';
+    var friendImg = '';
 
     //Функция запоминающая выбранного друга
     function RememberFriends () {
         var FriendIdLocal = localStorage.getItem('SelectedFriend');
         if(FriendIdLocal){
-            $('#'+ FriendIdLocal).addClass('FriendVisualOne');
+            friendImg = $('#'+ FriendIdLocal).addClass('FriendVisualOne').find('.ChatBlock_FriendAvatarImg').attr('src');
         }else {
-            $('.FriendVisual').eq(0).addClass('FriendVisualOne');
+            friendImg = $('.FriendVisual').eq(0).addClass('FriendVisualOne').find('.ChatBlock_FriendAvatarImg').attr('src');
         }
     }
     
@@ -52,17 +52,17 @@ $(document).ready(function(){
         function ItemSelection() {
             $(this).addClass('FriendVisualOne');
             $(this).siblings().removeClass('FriendVisualOne');
-            friendImges = $(this).find('img').attr('src');
+            friendImg = $(this).find('.ChatBlock_FriendAvatarImg').attr('src');
             var FriendId = this.id;
             localStorage.setItem('SelectedFriend',FriendId);
         };
     };
 
     //Конструктор сообщений
-    function CreateMessage (message, isUser, img){
+    function CreateMessage (message, isUser){
         var сlassName = isUser ? 'ChatBlock__MessagePullFriend UserMesage' : 'ChatBlock__MessagePullFriend' ;
-        var friendImg = img ? UserImg : friendImges;
-        return '<div class="'+ сlassName +'"><img class="ChatBlock__FriendImg" src="'+ friendImg +'" alt=""><div class="ChatBlock__FriendMessage"><p>'+ message +'</p></div></div>'
+        var avatar = isUser ? UserImg : friendImg;
+        return '<div class="'+ сlassName +'"><img class="ChatBlock__FriendImg" src="'+ avatar +'" alt=""><div class="ChatBlock__FriendMessage"><p>'+ message +'</p></div></div>'
     }
 
     //Рандомное число 
