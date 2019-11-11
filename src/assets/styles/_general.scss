@@ -38,6 +38,7 @@ body {
     flex-direction: column;
     justify-content: flex-end;
     padding: 10px;
+    overflow: auto;
 }
 .ChatBlock__MessagePullFriend {
     display: flex;
@@ -124,9 +125,26 @@ body {
     align-items: center;
     overflow: auto;
 }
-.ChatBlock__FriendsList::-webkit-scrollbar {
-    width: 0;
+// .ChatBlock__FriendsList::-webkit-scrollbar {
+//     width: 0;
+// }
+.ChatBlock__FriendsList::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
 }
+
+.ChatBlock__FriendsList::-webkit-scrollbar
+{
+	width: 2px;
+	background-color: #F5F5F5;
+}
+
+.ChatBlock__FriendsList::-webkit-scrollbar-thumb
+{
+	background-color: rgba(90, 90, 90, 0.993);
+}
+
 .ChatBlock__Communication {
     width: 100%;
     height: 520px;
