@@ -40,9 +40,15 @@ $(document).ready(function(){
             $this.text(number);
         });
     };
-    $('.FriendVisual').on('click', function() {
+
+    $('.FriendVisual').on('click', ItemSelection);
+
+    function ItemSelection() {
         $(this).addClass('FriendVisualOne');
         $(this).siblings().removeClass('FriendVisualOne');
-    });
+        var FriendId = this.id;
+        localStorage.setItem('SelectedFriend',FriendId);
+        console.log(localStorage.getItem('SelectedFriend'));
+    };
 
 });
