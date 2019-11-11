@@ -50,6 +50,8 @@ body {
     border: $border-style;
     position: relative;
     margin-left: 10px;
+    animation-name:show;
+    animation-duration:0.3s;
 
     &::before {
         content: "";
@@ -82,6 +84,7 @@ body {
     .ChatBlock__FriendMessage {
         margin-left: 0;
         margin-right:10px ;
+        
         &::before {
             left: auto;
             right: -8px;
@@ -98,6 +101,8 @@ body {
     margin:0 10px ;
     border: $border-style;
     flex-shrink: 0;
+    animation-name:show;
+    animation-duration:0.3s;
 }
 .ChatBlock__Search {
     width: 100%;
@@ -165,6 +170,12 @@ body {
     display: flex;
     align-items: center;
     border-left: 4px solid rgba(161, 202, 248, 0.76);
+    animation-name:show;
+    animation-duration:0.3s;
+}
+@keyframes show {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
 .FriendVisualOne {
     background-color: $lightBlue;
