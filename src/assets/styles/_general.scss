@@ -158,13 +158,13 @@ body {
 }
 .FriendVisual {
     height: 60px;
-    width:88%;
-     border-radius: $border-radius-style 0 0 $border-radius-style;
+    width:90%;
     margin-top: 10px;
     padding: 5px;
+    padding-left:15px;
     display: flex;
     align-items: center;
-    border-right: 4px solid rgba(161, 202, 248, 0.76);
+    border-left: 4px solid rgba(161, 202, 248, 0.76);
 }
 .FriendVisualOne {
     background-color: $lightBlue;
