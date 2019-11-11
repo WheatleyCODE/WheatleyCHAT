@@ -8,9 +8,19 @@ import $ from 'jquery';
 // 7 условие если текст совпадает со значением то показать родителя параграфа если нет то скрыть
 
 $(document).ready(function(){
+
     $('.FriendVisual').addClass('visible');
     counter();
 
+
+    var FriendIdLocal = localStorage.getItem('SelectedFriend');
+        if(FriendIdLocal){
+            $('#'+ FriendIdLocal).addClass('FriendVisualOne');
+        }else {
+             $('.FriendVisual').eq(0).addClass('FriendVisualOne')
+        }
+
+        
     var $FriendList = $('.ChatBlock__FriendsList');
     var $searchFriendInput = $('.ChatBlock__SearchFriend');
 
@@ -48,7 +58,7 @@ $(document).ready(function(){
         $(this).siblings().removeClass('FriendVisualOne');
         var FriendId = this.id;
         localStorage.setItem('SelectedFriend',FriendId);
-        console.log(localStorage.getItem('SelectedFriend'));
+        // console.log(localStorage.getItem('SelectedFriend'));
     };
 
 });
