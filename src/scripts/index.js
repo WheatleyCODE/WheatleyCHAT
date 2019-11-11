@@ -8,22 +8,8 @@ import $ from 'jquery';
 // 7 условие если текст совпадает со значением то показать родителя параграфа если нет то скрыть
 
 $(document).ready(function(){
-
-    //Счетчик друзей
-   function counterFriend() {
-        var $FriendList = $('.ChatBlock__FriendsList');
-        $FriendList.find('.visible .FriendNumber').each(function(i){
-            var number = i + 1;
-            var $this = $(this);
-            $this.text(number);
-        });
-    };
-
-    //Функция считающая друзей
-    function CountingFriends(){
-        $('.FriendVisual').addClass('visible');
-        counterFriend();
-    }
+    var UserImg = 'images/UserAvatar5.png';
+    var friendImges = '';
 
     //Функция запоминающая выбранного друга
     function RememberFriends () {
@@ -66,16 +52,27 @@ $(document).ready(function(){
         function ItemSelection() {
             $(this).addClass('FriendVisualOne');
             $(this).siblings().removeClass('FriendVisualOne');
+            friendImges = $(this).find('img').attr('src');
             var FriendId = this.id;
             localStorage.setItem('SelectedFriend',FriendId);
         };
     };
 
     //Конструктор сообщений
-    function CreateMessage (message, isUser){
+    function CreateMessage (message, isUser, img){
         var сlassName = isUser ? 'ChatBlock__MessagePullFriend UserMesage' : 'ChatBlock__MessagePullFriend' ;
-        return '<div class="'+ сlassName +'"><img class="ChatBlock__FriendImg" src="images/UserAvatar5.png" alt=""><div class="ChatBlock__FriendMessage"><p>'+ message +'</p></div></div>'
+        var friendImg = img ? UserImg : friendImges;
+        return '<div class="'+ сlassName +'"><img class="ChatBlock__FriendImg" src="'+ friendImg +'" alt=""><div class="ChatBlock__FriendMessage"><p>'+ message +'</p></div></div>'
     }
+
+    //Рандомное число 
+    function randomValue(min, max){
+        return Math.floor(Math.random() * (max - min) + min);
+    }
+
+    // for(var i = 0; i <20; i++){
+    //     console.log(randomValue(0, 3))
+    // }
      
     var friendMessageColl = [
         'Соре, помочь не могу, не знаю где он',
@@ -90,13 +87,11 @@ $(document).ready(function(){
     $userMessageButton.on('click', function(){
         var message = $userMessageInput.val();
         $userMessageInput.val('');
-        var messagePatern = CreateMessage(message, true);
-        $massagrsContainer.append(messagePatern);
+        $massagrsContainer.append(CreateMessage(message, true));
 
         setTimeout(function() {
-            var friendMessage = friendMessageColl[0];
-            var messagePatern = CreateMessage(friendMessage, false);
-            $massagrsContainer.append(messagePatern);
+            var friendMessage = friendMessageColl[randomValue(0,friendMessageColl.length)];
+            $massagrsContainer.append(CreateMessage(friendMessage, false));
         }, 1000);
     });
 
@@ -104,8 +99,6 @@ $(document).ready(function(){
 
 
     //Вызов функций
-    counterFriend();
-    CountingFriends();
     RememberFriends();
     FilterFriend();
     FhooseFriend();
