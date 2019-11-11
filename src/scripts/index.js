@@ -8,7 +8,7 @@ import $ from 'jquery';
 // 7 условие если текст совпадает со значением то показать родителя параграфа если нет то скрыть
 
 $(document).ready(function(){
-    var UserImg = 'images/UserAvatar5.png';
+    var UserImg = 'images/UserAvatarMain.jpg';
     var friendImg = '';
 
     //Функция запоминающая выбранного друга
@@ -98,11 +98,11 @@ $(document).ready(function(){
     function printMessage(){
         var message = $userMessageInput.val();
         $userMessageInput.val('');
-        $massagrsContainer.append(CreateMessage(message, true));
+        $massagrsContainer.prepend(CreateMessage(message, true));
 
         setTimeout(function() {
             var friendMessage = friendMessageColl[randomValue(0,friendMessageColl.length)];
-            $massagrsContainer.append(CreateMessage(friendMessage, false));
+            $massagrsContainer.prepend(CreateMessage(friendMessage, false));
         }, 1000);
     }
 
