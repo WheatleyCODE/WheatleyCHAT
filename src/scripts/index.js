@@ -3,7 +3,7 @@ import $ from 'jquery';
 $(document).ready(function(){
 
     //Глобальные переменные
-    var UserImg = 'images/UserAvatarMain.jpg';
+    var userImg = 'images/UserAvatarMain.jpg';
     var friendImg = '';
 
     var friendMessageColl = [
@@ -15,69 +15,73 @@ $(document).ready(function(){
     ]
 
     //Функция запоминающая выбранного друга
-    function RememberFriends () {
-        var FriendIdLocal = localStorage.getItem('SelectedFriend');
-        if(FriendIdLocal){
-            friendImg = $('#'+ FriendIdLocal).addClass('FriendVisualOne').find('.ChatBlock_FriendAvatarImg').attr('src');
-        }else {
+    function RememberFriends() {
+        var friendIdLocal = localStorage.getItem('SelectedFriend');
+        if (friendIdLocal) {
+            friendImg = $('#'+ friendIdLocal).addClass('FriendVisualOne').find('.ChatBlock_FriendAvatarImg').attr('src');
+        } else {
             friendImg = $('.FriendVisual').eq(0).addClass('FriendVisualOne').find('.ChatBlock_FriendAvatarImg').attr('src');
         }
     }
     
     //Функция ищущая друзей
-    function FilterFriend(){
+    function FilterFriend() {
 
-        var $FriendList = $('.ChatBlock__FriendsList');
+        var $friendList = $('.ChatBlock__FriendsList');
         var $searchFriendInput = $('.ChatBlock__SearchFriend');
 
         $searchFriendInput.on('input',function(event){
         var value = event.target.value.toLowerCase();
 
-            $FriendList.find('.ChatBlock__FriendName').each(function(){
+            $friendList.find('.ChatBlock__FriendName').each(function() {
                 var $this = $(this);
                 var text = $this.text().toLocaleLowerCase();
                 var $friendContainer = $this.closest('.FriendVisual');
 
-                if(text.indexOf(value) !==-1){
+                if(text.indexOf(value) !==-1) {
                     $friendContainer.show().addClass('visible');
-                }else {
+                } else {
                     $friendContainer.hide().removeClass('visible');
-                 }
+                }
             });
         });
     };
 
     //Выбор друга
-    function FhooseFriend(){
+    function FhooseFriend() {
         $('.FriendVisual').on('click', ItemSelection);
 
         function ItemSelection() {
             $(this).addClass('FriendVisualOne');
             $(this).siblings().removeClass('FriendVisualOne');
             friendImg = $(this).find('.ChatBlock_FriendAvatarImg').attr('src');
-            var FriendId = this.id;
-            var $ChatBlockMessage = $('.ChatBlock__Message');
-            var $ChatBlockCom = $('.ChatBlock__Communication');
-            var DataId = $('.ChatBlock__Message').data('id');
-            if (FriendId === DataId) {
-                $ChatBlockMessage.removeClass('CloseChatBlock__Message');
-            } else {
-                var $lolk = $ChatBlockCom.find('.ChatBlock__Message');
-                $lolk.addClass('CloseChatBlock__Message')
-                $ChatBlockCom.append(CreateNewChatBlockMessage(FriendId))
-            }
-            localStorage.setItem('SelectedFriend',FriendId);
+            var friendId = this.id;
+            localStorage.setItem('SelectedFriend',friendId);
+            toggleActiveChat(friendId);
         };
     };
 
-    //Конструктор сообщений
-    function CreateMessage (message, isUser){
-        var сlassName = isUser ? 'ChatBlock__MessagePullFriend UserMesage' : 'ChatBlock__MessagePullFriend' ;
-        var avatar = isUser ? UserImg : friendImg;
-        return '<div class="'+ сlassName +'"><img class="ChatBlock__FriendImg" src="'+ avatar +'" alt=""><div class="ChatBlock__FriendMessage"><p>'+ message +'</p></div></div>'
+    function toggleActiveChat(id) {
+        var $chatBlockMessage = $('.ChatBlock__Message');
+        $chatBlockMessage.addClass('Close');
+
+        var $currentChatBlock = $('.ChatBlock__Message[data-id="' + id + '"]');
+
+        if($currentChatBlock.length > 0) {
+            $currentChatBlock.removeClass('Close');
+        } else {
+            $('.ChatBlock__Communication').append(CreateNewChatBlockMessage(id));
+        }
     }
-    function CreateNewChatBlockMessage (FriendId){
-        return '<div class="ChatBlock__Message" data-id="'+ FriendId+'"></div>';
+
+    //Конструктор сообщений
+    function CreateMessage (message, isUser) {
+        var сlassName = isUser ? 'ChatBlock__MessagePullFriend UserMesage' : 'ChatBlock__MessagePullFriend';
+        var avatar = isUser ? userImg : friendImg;
+        return '<div class="'+ сlassName +'"><img class="ChatBlock__FriendImg" src="'+ avatar +'" alt=""><div class="ChatBlock__FriendMessage"><p>'+ message +'</p></div></div>';
+    }
+    function CreateNewChatBlockMessage (friendId) {
+        return '<div class="ChatBlock__Message" data-id="'+ friendId+'"></div>';
     }
 
     //Рандомное число 
@@ -92,7 +96,7 @@ $(document).ready(function(){
         
         $userMessageInput.keypress(function(event){
             var keycode = (event.keyCode ? event.keyCode : event.which);
-            if(keycode == '13'){
+            if (keycode == '13') {
                 printMessage();
             }
         });
@@ -100,12 +104,12 @@ $(document).ready(function(){
     }
 
     //Отображение сообщения
-    function printMessage(){
+    function printMessage() {
         var $massagrsContainer = $('.ChatBlock__Message');
         var $userMessageInput = $('.ChatBlock__UserMessageInput');
         var message = $userMessageInput.val();
         $userMessageInput.val('');
-        if(message !==''){
+        if(message !=='') {
             $massagrsContainer.prepend(CreateMessage(message, true));
             setTimeout(function() {
                 var friendMessage = friendMessageColl[randomValue(0, friendMessageColl.length)];
