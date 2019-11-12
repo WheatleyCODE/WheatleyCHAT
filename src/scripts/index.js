@@ -56,6 +56,16 @@ $(document).ready(function(){
             $(this).siblings().removeClass('FriendVisualOne');
             friendImg = $(this).find('.ChatBlock_FriendAvatarImg').attr('src');
             var FriendId = this.id;
+            var $ChatBlockMessage = $('.ChatBlock__Message');
+            var $ChatBlockCom = $('.ChatBlock__Communication');
+            var DataId = $('.ChatBlock__Message').data('id');
+            if (FriendId === DataId) {
+                $ChatBlockMessage.removeClass('CloseChatBlock__Message');
+            } else {
+                var $lolk = $ChatBlockCom.find('.ChatBlock__Message');
+                $lolk.addClass('CloseChatBlock__Message')
+                $ChatBlockCom.append(CreateNewChatBlockMessage(FriendId))
+            }
             localStorage.setItem('SelectedFriend',FriendId);
         };
     };
@@ -65,6 +75,9 @@ $(document).ready(function(){
         var сlassName = isUser ? 'ChatBlock__MessagePullFriend UserMesage' : 'ChatBlock__MessagePullFriend' ;
         var avatar = isUser ? UserImg : friendImg;
         return '<div class="'+ сlassName +'"><img class="ChatBlock__FriendImg" src="'+ avatar +'" alt=""><div class="ChatBlock__FriendMessage"><p>'+ message +'</p></div></div>'
+    }
+    function CreateNewChatBlockMessage (FriendId){
+        return '<div class="ChatBlock__Message" data-id="'+ FriendId+'"></div>';
     }
 
     //Рандомное число 
