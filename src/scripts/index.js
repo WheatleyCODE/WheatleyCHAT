@@ -110,11 +110,18 @@ $(document).ready(function(){
         var message = $userMessageInput.val();
         $userMessageInput.val('');
         if(message !=='') {
-            $massagrsContainer.prepend(CreateMessage(message, true));
-            setTimeout(function() {
-                var friendMessage = friendMessageColl[randomValue(0, friendMessageColl.length)];
-                $massagrsContainer.prepend(CreateMessage(friendMessage, false));
-            }, 1000);
+            $massagrsContainer.each(function(){
+                if(!$(this).hasClass("Close")) {
+
+                    var $this = $(this);
+                    $this.prepend(CreateMessage(message, true));
+                    
+                    setTimeout(function() {
+                    var friendMessage = friendMessageColl[randomValue(0, friendMessageColl.length)];
+                    $this.prepend(CreateMessage(friendMessage, false));
+                    }, 1000);
+                } 
+            });
         }
     }
 
