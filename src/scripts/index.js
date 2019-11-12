@@ -10,8 +10,10 @@ $(document).ready(function(){
         'Соре, помочь не могу, не знаю где он',
         'Но могу зачитать реп!',
         'Как хочешь, бро )',
+        'Альянс сосед',
         'Если б я был человеком, а не скриптом, я пообщался бы с тобой =)',
-        'Заскриптованная фраза №5',
+        'Орудийщик на связи... а... то есть Зантора',
+        'Я хочу выиграть Золотую Лигу',
     ]
 
     //Функция запоминающая выбранного друга
@@ -115,7 +117,7 @@ $(document).ready(function(){
 
                     var $this = $(this);
                     $this.prepend(CreateMessage(message, true));
-                    
+
                     setTimeout(function() {
                     var friendMessage = friendMessageColl[randomValue(0, friendMessageColl.length)];
                     $this.prepend(CreateMessage(friendMessage, false));
