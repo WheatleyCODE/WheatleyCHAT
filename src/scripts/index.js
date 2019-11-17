@@ -1,11 +1,7 @@
 import $ from 'jquery';
 
 $(document).ready(function(){
-
-   if (!localStorage.getItem('SelectedFriend')){
-       localStorage.setItem('SelectedFriend', 'Jack');
-   }
-   
+  
     //Глобальные переменные
     var userImg = 'images/UserAvatarMain.jpg';
     var friendImg = '';
@@ -21,8 +17,8 @@ $(document).ready(function(){
         Green: [],
         Fire: [],
     };
-    var localSTuseID = '';
 
+    var localSTuseID = '';
     var friendMessageColl = [
         'Соре, помочь не могу, не знаю где он',
         'Но могу зачитать реп!',
@@ -37,9 +33,11 @@ $(document).ready(function(){
     function RememberFriends() {
         var friendIdLocal = localStorage.getItem('SelectedFriend');
         if (friendIdLocal) {
-            friendImg = $('#'+ friendIdLocal).addClass('FriendVisualOne').find('.ChatBlock_FriendAvatarImg').attr('src');
+            friendImg = $('#' + friendIdLocal).addClass('FriendVisualOne').find('.ChatBlock_FriendAvatarImg').attr('src');
         } else {
             friendImg = $('.FriendVisual').eq(0).addClass('FriendVisualOne').find('.ChatBlock_FriendAvatarImg').attr('src');
+            var IdFirstElem = $('.FriendVisual:first-child').attr('id');
+            localStorage.setItem('SelectedFriend', IdFirstElem);
         }
     }
     
@@ -49,7 +47,7 @@ $(document).ready(function(){
         var $friendList = $('.ChatBlock__FriendsList');
         var $searchFriendInput = $('.ChatBlock__SearchFriend');
 
-        $searchFriendInput.on('input',function(event){
+        $searchFriendInput.on('input', function(event) {
         var value = event.target.value.toLowerCase();
 
             $friendList.find('.ChatBlock__FriendName').each(function() {
@@ -57,7 +55,7 @@ $(document).ready(function(){
                 var text = $this.text().toLocaleLowerCase();
                 var $friendContainer = $this.closest('.FriendVisual');
 
-                if(text.indexOf(value) !==-1) {
+                if (text.indexOf(value) !==-1) {
                     $friendContainer.show().addClass('visible');
                 } else {
                     $friendContainer.hide().removeClass('visible');
@@ -95,9 +93,8 @@ $(document).ready(function(){
             var localStorageMessageJSON = localStorage.getItem(id + 'Message');
             var localStorageMessage = JSON.parse(localStorageMessageJSON);
 
-            if (localStorageMessage){
+            if (localStorageMessage) {
                 for(var i = 0; i < localStorageMessage.length; i++) {
-                    console.log(localStorageMessage[i].message);
                     $('.ChatBlock__Message[data-id="' + id + '"]').prepend(CreateMessage(localStorageMessage[i].message, localStorageMessage[i].isUser));
                 }
             }
@@ -117,12 +114,12 @@ $(document).ready(function(){
     }
 
     //Рандомное число 
-    function randomValue(min, max){
+    function randomValue(min, max) {
         return Math.floor(Math.random() * (max - min) + min);
     }
 
     //Обработчик отправки сообщений
-    function inputHandlers(){
+    function inputHandlers() {
         var $userMessageInput = $('.ChatBlock__UserMessageInput');
         var $userMessageButton = $('.ChatBlock__UserMessageButton');
         
@@ -171,7 +168,7 @@ $(document).ready(function(){
 
     //Вызов функций
     RememberFriends();
-    reloadJack();
+    reload();
     FilterFriend();
     FhooseFriend();
     inputHandlers();
@@ -179,15 +176,11 @@ $(document).ready(function(){
 
     
 
-    function reloadJack() {
+    function reload() {
         var friendIdLocal = localStorage.getItem('SelectedFriend');
         $('.ChatBlock__Message[data-id="' + friendIdLocal + '"]').removeClass('Close');
         localSTuseID = friendIdLocal;
-        var localStorageActiveMessage = localStorage.getItem(friendIdLocal + 'Message');
 
-        if (localStorageActiveMessage) {
-            messages[friendIdLocal] = JSON.parse(localStorageActiveMessage);
-        }
         toggleActiveChat(friendIdLocal);
     }
 });
