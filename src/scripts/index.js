@@ -5,6 +5,20 @@ $(document).ready(function(){
     //Глобальные переменные
     var userImg = 'images/UserAvatarMain.jpg';
     var friendImg = '';
+    var messages = {
+        Jack: [],
+        Roma: [],
+        Lurke: [],
+        Legolas: [],
+        Rasl: [],
+        Frojer: [],
+        Dark: [],
+        Light: [],
+        Green: [],
+        Fire: [],
+    };
+    var localSTuseID = '';
+    // localStorage.clear();
 
     var friendMessageColl = [
         'Соре, помочь не могу, не знаю где он',
@@ -58,6 +72,7 @@ $(document).ready(function(){
             $(this).siblings().removeClass('FriendVisualOne');
             friendImg = $(this).find('.ChatBlock_FriendAvatarImg').attr('src');
             var friendId = this.id;
+            localSTuseID = friendId;
             localStorage.setItem('SelectedFriend',friendId);
             toggleActiveChat(friendId);
         };
@@ -73,6 +88,17 @@ $(document).ready(function(){
             $currentChatBlock.removeClass('Close');
         } else {
             $('.ChatBlock__Communication').append(CreateNewChatBlockMessage(id));
+            var localStorageMessageJSON = localStorage.getItem(id + 'Message');
+            var localStorageMessage = JSON.parse(localStorageMessageJSON);
+            // console.log(localStorageMessage);
+            if (localStorageMessage != null){
+                for(var i = 0; i < localStorageMessage.length; i++) {
+                    console.log(localStorageMessage[i].message);
+                    $('.ChatBlock__Message[data-id="' + id + '"]').prepend(CreateMessage(localStorageMessage[i].message, localStorageMessage[i].isUser));
+                }
+            }
+            
+                
         }
     }
 
@@ -116,11 +142,23 @@ $(document).ready(function(){
                 if(!$(this).hasClass("Close")) {
 
                     var $this = $(this);
+                   
                     $this.prepend(CreateMessage(message, true));
+                    messages[localSTuseID].push({
+                        isUser: true,
+                        message: message
+                    });
+                    localStorage.setItem(localSTuseID + 'Message', JSON.stringify(messages[localSTuseID]))
+
 
                     setTimeout(function() {
                     var friendMessage = friendMessageColl[randomValue(0, friendMessageColl.length)];
                     $this.prepend(CreateMessage(friendMessage, false));
+                    messages[localSTuseID].push({
+                        isUser: false,
+                        message: friendMessage
+                    });
+                    localStorage.setItem(localSTuseID + 'Message', JSON.stringify(messages[localSTuseID]))
                     }, 1000);
                 } 
             });
@@ -132,4 +170,13 @@ $(document).ready(function(){
     FilterFriend();
     FhooseFriend();
     inputHandlers();
+    reloadJack();
+    
+
+    
+
+    function reloadJack() {
+        var friendIdLocal = localStorage.getItem('SelectedFriend');
+        $('.ChatBlock__Message[data-id="' + friendIdLocal + '"]').removeClass('Close');
+    }
 });
