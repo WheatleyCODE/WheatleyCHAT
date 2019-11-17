@@ -178,5 +178,7 @@ $(document).ready(function(){
     function reloadJack() {
         var friendIdLocal = localStorage.getItem('SelectedFriend');
         $('.ChatBlock__Message[data-id="' + friendIdLocal + '"]').removeClass('Close');
+
+        messages[friendIdLocal].push(localStorage.getItem(friendIdLocal + 'Message'));
     }
 });
