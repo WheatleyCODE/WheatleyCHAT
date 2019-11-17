@@ -2,6 +2,10 @@ import $ from 'jquery';
 
 $(document).ready(function(){
 
+   if (!localStorage.getItem('SelectedFriend')){
+       localStorage.setItem('SelectedFriend', 'Jack');
+   }
+   
     //Глобальные переменные
     var userImg = 'images/UserAvatarMain.jpg';
     var friendImg = '';
@@ -18,7 +22,6 @@ $(document).ready(function(){
         Fire: [],
     };
     var localSTuseID = '';
-    // localStorage.clear();
 
     var friendMessageColl = [
         'Соре, помочь не могу, не знаю где он',
@@ -88,10 +91,11 @@ $(document).ready(function(){
             $currentChatBlock.removeClass('Close');
         } else {
             $('.ChatBlock__Communication').append(CreateNewChatBlockMessage(id));
+
             var localStorageMessageJSON = localStorage.getItem(id + 'Message');
             var localStorageMessage = JSON.parse(localStorageMessageJSON);
-            // console.log(localStorageMessage);
-            if (localStorageMessage != null){
+
+            if (localStorageMessage){
                 for(var i = 0; i < localStorageMessage.length; i++) {
                     console.log(localStorageMessage[i].message);
                     $('.ChatBlock__Message[data-id="' + id + '"]').prepend(CreateMessage(localStorageMessage[i].message, localStorageMessage[i].isUser));
@@ -167,10 +171,10 @@ $(document).ready(function(){
 
     //Вызов функций
     RememberFriends();
+    reloadJack();
     FilterFriend();
     FhooseFriend();
     inputHandlers();
-    reloadJack();
     
 
     
@@ -178,7 +182,12 @@ $(document).ready(function(){
     function reloadJack() {
         var friendIdLocal = localStorage.getItem('SelectedFriend');
         $('.ChatBlock__Message[data-id="' + friendIdLocal + '"]').removeClass('Close');
+        localSTuseID = friendIdLocal;
+        var localStorageActiveMessage = localStorage.getItem(friendIdLocal + 'Message');
 
-        messages[friendIdLocal].push(localStorage.getItem(friendIdLocal + 'Message'));
+        if (localStorageActiveMessage) {
+            messages[friendIdLocal] = JSON.parse(localStorageActiveMessage);
+        }
+        toggleActiveChat(friendIdLocal);
     }
 });
