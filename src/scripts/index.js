@@ -143,7 +143,7 @@ $(document).ready(function(){
                 if(!$(this).hasClass("Close")) {
 
                     var $this = $(this);
-                   
+                     
                     $this.prepend(CreateMessage(message, true));
                     messages[localSTuseID].push({
                         isUser: true,
@@ -173,13 +173,18 @@ $(document).ready(function(){
     FhooseFriend();
     inputHandlers();
     
-
-    
+   
 
     function reload() {
         var friendIdLocal = localStorage.getItem('SelectedFriend');
         $('.ChatBlock__Message[data-id="' + friendIdLocal + '"]').removeClass('Close');
-        localSTuseID = friendIdLocal;
+        localSTuseID = friendIdLocal;  
+
+        var lolChto = JSON.parse(localStorage.getItem(friendIdLocal + 'Message')); 
+        console.log(messages[friendIdLocal]);
+        for(var i = 0; i < lolChto.length; i++) {
+            messages[friendIdLocal].push(lolChto[i])
+        }
 
         toggleActiveChat(friendIdLocal);
     }
