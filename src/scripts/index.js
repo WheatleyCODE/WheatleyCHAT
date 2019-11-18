@@ -1,6 +1,6 @@
 import $ from 'jquery';
 
-$(document).ready(function(){
+$(document).ready(function() {
   
     //Глобальные переменные
     var userImg = 'images/UserAvatarMain.jpg';
@@ -55,7 +55,7 @@ $(document).ready(function(){
                 var text = $this.text().toLocaleLowerCase();
                 var $friendContainer = $this.closest('.FriendVisual');
 
-                if (text.indexOf(value) !==-1) {
+                if (text.indexOf(value) !== -1) {
                     $friendContainer.show().addClass('visible');
                 } else {
                     $friendContainer.hide().removeClass('visible');
@@ -85,7 +85,7 @@ $(document).ready(function(){
 
         var $currentChatBlock = $('.ChatBlock__Message[data-id="' + id + '"]');
 
-        if($currentChatBlock.length > 0) {
+        if ($currentChatBlock.length > 0) {
             $currentChatBlock.removeClass('Close');
         } else {
             $('.ChatBlock__Communication').append(CreateNewChatBlockMessage(id));
@@ -123,7 +123,7 @@ $(document).ready(function(){
         var $userMessageInput = $('.ChatBlock__UserMessageInput');
         var $userMessageButton = $('.ChatBlock__UserMessageButton');
         
-        $userMessageInput.keypress(function(event){
+        $userMessageInput.keypress(function(event) {
             var keycode = (event.keyCode ? event.keyCode : event.which);
             if (keycode == '13') {
                 printMessage();
@@ -138,9 +138,9 @@ $(document).ready(function(){
         var $userMessageInput = $('.ChatBlock__UserMessageInput');
         var message = $userMessageInput.val();
         $userMessageInput.val('');
-        if(message !=='') {
-            $massagrsContainer.each(function(){
-                if(!$(this).hasClass("Close")) {
+        if (message !=='') {
+            $massagrsContainer.each(function() {
+                if (!$(this).hasClass("Close")) {
 
                     var $this = $(this);
                      
