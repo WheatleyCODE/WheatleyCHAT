@@ -180,11 +180,12 @@ $(document).ready(function(){
         $('.ChatBlock__Message[data-id="' + friendIdLocal + '"]').removeClass('Close');
         localSTuseID = friendIdLocal;  
 
-        var lolChto = JSON.parse(localStorage.getItem(friendIdLocal + 'Message')); 
+        var localMessage = JSON.parse(localStorage.getItem(friendIdLocal + 'Message')); 
         console.log(messages[friendIdLocal]);
-        for(var i = 0; i < lolChto.length; i++) {
-            messages[friendIdLocal].push(lolChto[i])
+        if (localMessage) {
+            messages[friendIdLocal] = localMessage;
         }
+        console.log(messages[friendIdLocal]);
 
         toggleActiveChat(friendIdLocal);
     }
