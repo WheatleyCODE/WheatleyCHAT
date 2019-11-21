@@ -208,6 +208,9 @@ body {
     background-color: rgba(214, 229, 255, 0.432);
     border-radius: 0 $border-radius-style 0 0;
     padding-top: 4px;
+    @include adaptive(mobile) {
+        width: 96%;
+    }
 }
 .ChatBlock__UserMessage {
     width: 100%;
