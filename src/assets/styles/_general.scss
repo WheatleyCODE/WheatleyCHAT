@@ -20,15 +20,55 @@ body {
     display: flex;
     background-color: $white;
     box-shadow: 0px 0px 5px 2px rgb(175, 175, 175);
+    margin-left: 10px;
+    margin-right: 10px;
+
+    @include adaptive(wide-tablet) {
+      width: 700px;
+    }
+    
+    @include adaptive(tablet) {
+      width: 470px;
+    }
+    
+    @include adaptive(mobile) {
+      width: 300px;
+    }
 }
 .ChatBlock__SiteBar {
     width: 30%;
     height: 100%;
     border-right:$border-style;
+    
+    @include adaptive(wide-tablet) {
+        
+    }
+    
+    @include adaptive(tablet) {
+        width: 200px;
+    }
+    
+    @include adaptive(mobile) {
+        width: 80px;
+       
+    }
 }
 .ChatBlock__UserContent {
     width: 70%;
     height: 100%;
+
+    @include adaptive(wide-tablet) {
+     
+    }
+    
+    @include adaptive(tablet) {
+      
+    }
+    
+    @include adaptive(mobile) {
+        width: 220px;
+        
+    }
 }
 .ChatBlock__Message {
     width: 100%;
@@ -68,6 +108,10 @@ body {
         border-top: none;
         border-right: none;
         transform: rotate(45deg);
+
+        @include adaptive(mobile) {
+            display: none;
+        }
     }
 
     p {
@@ -76,10 +120,18 @@ body {
         border-radius: $border-radius-style;
         background-color:$white;
     }
+
+    @include adaptive(mobile) {
+        margin-left: 0px;
+      }
 }
 .UserMesage {
     display: flex;
     flex-direction: row-reverse;
+
+    @include adaptive(mobile) {
+        flex-direction: row;
+    }
 
     .ChatBlock__FriendMessage {
         margin-left: 0;
@@ -91,6 +143,10 @@ body {
             border: $border-style;
             border-bottom: none;
             border-left: none;
+
+            @include adaptive(mobile) {
+                display: none;
+            }
         }
     }
 }
@@ -121,6 +177,12 @@ body {
     background-size: 20px;
     background-position-y: center;
     background-position-x: 10px;
+
+    @include adaptive(mobile) {
+        background: none;
+        padding-left:10px;
+
+    }
 }
 .ChatBlock__FriendsList {
     width: 100%;
@@ -172,6 +234,19 @@ body {
     border-left: 4px solid rgba(161, 202, 248, 0.76);
     animation-name:show;
     animation-duration:0.3s;
+
+    @include adaptive(wide-tablet) {
+        
+    }
+    
+    @include adaptive(tablet) {
+        width:100%;
+    }
+    
+    @include adaptive(mobile) {
+        width:100%;
+        padding-left:10px;
+    }
 }
 @keyframes show {
     0% {opacity: 0;}
@@ -197,6 +272,24 @@ body {
 .ChatBlock__FriendNameText {
     margin-left: 30px;
     width: 140px;
+
+    @include adaptive(wide-tablet) {
+      width: 90px;
+      margin-left: 20px;
+    }
+    
+    @include adaptive(tablet) {
+      width: 90px;
+    }
+    
+    @include adaptive(mobile) {
+      width: 90px;
+    }
+}
+.ChatBlock__FriendName{
+    @include adaptive(mobile) {
+       display: none;
+      }
 }
 .ChatBlock_FriendAvatarImg {
     width: 50px;
@@ -209,6 +302,17 @@ body {
     padding-left: 10px;
     border:$border-style ;
     border-right: none;
+    @include adaptive(wide-tablet) {
+      width: 80%;
+    }
+    
+    @include adaptive(tablet) {
+      width: 60%;
+    }
+    
+    @include adaptive(mobile) {
+      width: 60%;
+    }
 }
 .ChatBlock__UserMessageButton {
     height: 40px;

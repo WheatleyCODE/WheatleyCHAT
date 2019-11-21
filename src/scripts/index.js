@@ -173,20 +173,16 @@ $(document).ready(function() {
     FhooseFriend();
     inputHandlers();
     
-   
-
+    
     function reload() {
         var friendIdLocal = localStorage.getItem('SelectedFriend');
         $('.ChatBlock__Message[data-id="' + friendIdLocal + '"]').removeClass('Close');
         localSTuseID = friendIdLocal;  
 
         var localMessage = JSON.parse(localStorage.getItem(friendIdLocal + 'Message')); 
-        console.log(messages[friendIdLocal]);
         if (localMessage) {
             messages[friendIdLocal] = localMessage;
         }
-        console.log(messages[friendIdLocal]);
-
         toggleActiveChat(friendIdLocal);
     }
 });
