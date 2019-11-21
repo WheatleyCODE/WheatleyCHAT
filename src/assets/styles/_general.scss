@@ -12,6 +12,7 @@ body {
 .Options {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 .ChatBlock {
     width: 900px;
@@ -23,17 +24,6 @@ body {
     margin-left: 10px;
     margin-right: 10px;
 
-    @include adaptive(wide-tablet) {
-      width: 700px;
-    }
-    
-    @include adaptive(tablet) {
-      width: 470px;
-    }
-    
-    @include adaptive(mobile) {
-      width: 300px;
-    }
 }
 .ChatBlock__SiteBar {
     width: 30%;
@@ -49,8 +39,10 @@ body {
     }
     
     @include adaptive(mobile) {
-        width: 80px;
-       
+        width: 200px;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 0 10px rgba(0,0,0,0.5);
     }
 }
 .ChatBlock__UserContent {
@@ -66,8 +58,9 @@ body {
     }
     
     @include adaptive(mobile) {
-        width: 220px;
-        
+        width: 100%;
+        position: absolute;
+        z-index: 1;
     }
 }
 .ChatBlock__Message {
@@ -166,6 +159,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #fff;
 }
 .ChatBlock__SearchFriend{
     width: 90%;
@@ -191,6 +185,7 @@ body {
     flex-direction: column;
     align-items: center;
     overflow: auto;
+    background-color: #fff;
 }
 .ChatBlock__FriendsList::-webkit-scrollbar-track, .ChatBlock__Message::-webkit-scrollbar-track
 {
@@ -286,11 +281,7 @@ body {
       width: 90px;
     }
 }
-.ChatBlock__FriendName{
-    @include adaptive(mobile) {
-       display: none;
-      }
-}
+
 .ChatBlock_FriendAvatarImg {
     width: 50px;
     height: 50px;
@@ -307,11 +298,11 @@ body {
     }
     
     @include adaptive(tablet) {
-      width: 60%;
+      width: 70%;
     }
     
     @include adaptive(mobile) {
-      width: 60%;
+      width: 70%;
     }
 }
 .ChatBlock__UserMessageButton {
