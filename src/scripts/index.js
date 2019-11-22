@@ -29,6 +29,7 @@ $(document).ready(function() {
         'Я хочу выиграть Золотую Лигу',
     ]
 
+    var WIDTH_MOBILE = 480;
     //Функция запоминающая выбранного друга
     function RememberFriends() {
         var friendIdLocal = localStorage.getItem('SelectedFriend');
@@ -173,27 +174,28 @@ $(document).ready(function() {
     FhooseFriend();
     inputHandlers();
 
-    $(window).resize(function() {
+    $(window).resize(OnWindowRisize);
+    OnWindowRisize();
+        
+        function OnWindowRisize() {
         var userMessage = $('.ChatBlock__Communication');
         var mobileAdaptive = $('.ChatBlock__MobileAdaptive');
         var friendVisual = $('.FriendVisual');
         var siteBar = $('.ChatBlock__SiteBar');
-          if ( $(window).width() < 480 ) {
-            console.log('480');
-            friendVisual.on('click',function(){
-                console.log('dsadsaddas');
+        var мobileAdaptive = $('.ChatBlock__MobileAdaptive');
+          if ( $(window).width() < WIDTH_MOBILE ) {
+            мobileAdaptive.addClass('Open');
+            friendVisual.on('click', function() {
                 siteBar.addClass('Close');
             });
-            mobileAdaptive.on('click',function(){
+            mobileAdaptive.on('click', function() {
                 siteBar.removeClass('Close');
             });
-            userMessage.on('click',function(){
+            userMessage.on('click', function() {
                 siteBar.addClass('Close');
             });
           }
-        });
-     
-    
+        };
     
     function reload() {
         var friendIdLocal = localStorage.getItem('SelectedFriend');
