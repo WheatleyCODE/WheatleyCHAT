@@ -14,6 +14,7 @@ $(document).ready(function() {
         Frojer: [],
         Dark: [],
         Light: [],
+        Dndd: [],
         Green: [],
         Fire: [],
     };
