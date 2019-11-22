@@ -175,10 +175,15 @@ $(document).ready(function() {
 
     $(window).resize(function() {
         var userMessage = $('.ChatBlock__Communication');
-        var mobileAdaptive = $('.ChatBlock__MobileAdaptive')
+        var mobileAdaptive = $('.ChatBlock__MobileAdaptive');
+        var friendVisual = $('.FriendVisual');
         var siteBar = $('.ChatBlock__SiteBar');
           if ( $(window).width() < 480 ) {
             console.log('480');
+            friendVisual.on('click',function(){
+                console.log('dsadsaddas');
+                siteBar.addClass('Close');
+            });
             mobileAdaptive.on('click',function(){
                 siteBar.removeClass('Close');
             });
