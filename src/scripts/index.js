@@ -172,6 +172,22 @@ $(document).ready(function() {
     FilterFriend();
     FhooseFriend();
     inputHandlers();
+
+    $(window).resize(function() {
+        var userMessage = $('.ChatBlock__Communication');
+        var mobileAdaptive = $('.ChatBlock__MobileAdaptive')
+        var siteBar = $('.ChatBlock__SiteBar');
+          if ( $(window).width() < 480 ) {
+            console.log('480');
+            mobileAdaptive.on('click',function(){
+                siteBar.removeClass('Close');
+            });
+            userMessage.on('click',function(){
+                siteBar.addClass('Close');
+            });
+          }
+        });
+     
     
     
     function reload() {
